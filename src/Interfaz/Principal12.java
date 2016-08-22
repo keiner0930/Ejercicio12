@@ -5,6 +5,8 @@
  */
 package Interfaz;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author sony
@@ -49,6 +51,12 @@ public class Principal12 extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Traditional Arabic", 2, 18)); // NOI18N
         jLabel2.setText("Peliculas Alquiladas");
         jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 120, 140, -1));
+
+        txtDias.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtDiasKeyTyped(evt);
+            }
+        });
         jPanel1.add(txtDias, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 70, 50, 30));
 
         jLabel3.setFont(new java.awt.Font("Traditional Arabic", 2, 18)); // NOI18N
@@ -60,11 +68,18 @@ public class Principal12 extends javax.swing.JFrame {
                 txtPeliculasActionPerformed(evt);
             }
         });
+        txtPeliculas.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtPeliculasKeyTyped(evt);
+            }
+        });
         jPanel1.add(txtPeliculas, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 110, 50, 30));
 
         jLabel4.setFont(new java.awt.Font("Traditional Arabic", 2, 18)); // NOI18N
         jLabel4.setText("Monto a Pagar");
         jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 170, 110, -1));
+
+        txtMonto.setEditable(false);
         jPanel1.add(txtMonto, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 200, 80, 30));
 
         cmdCalcular.setText("Calcular");
@@ -105,6 +120,19 @@ public class Principal12 extends javax.swing.JFrame {
     String monto;
     int dias,peliculas,nptotal,vtotal;
     
+    if(txtDias.getText().isEmpty()){
+     getToolkit().beep();
+     JOptionPane.showMessageDialog(this, "Digite El Numero de Dias","Error",JOptionPane.ERROR_MESSAGE);
+     txtDias.requestFocusInWindow();
+     }
+    
+    else if(txtPeliculas.getText().isEmpty()){
+     getToolkit().beep();
+     JOptionPane.showMessageDialog(this, "Digite El Numero de peliculas","Error",JOptionPane.ERROR_MESSAGE);
+     txtPeliculas.requestFocusInWindow();
+     }
+    
+    else{
     dias= Integer.parseInt(txtDias.getText());
     peliculas= Integer.parseInt(txtPeliculas.getText());
     
@@ -113,7 +141,8 @@ public class Principal12 extends javax.swing.JFrame {
     
     monto= String.valueOf(vtotal);
     txtMonto.setText(monto);
-        
+    
+    }    
     }//GEN-LAST:event_cmdCalcularActionPerformed
 
     private void cmdBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdBorrarActionPerformed
@@ -122,6 +151,22 @@ public class Principal12 extends javax.swing.JFrame {
      txtMonto.setText("");
      txtDias.requestFocusInWindow();
     }//GEN-LAST:event_cmdBorrarActionPerformed
+
+    private void txtDiasKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDiasKeyTyped
+        char c=evt.getKeyChar(); 
+     if(!Character.isDigit(c)) { 
+              getToolkit().beep();  
+              evt.consume();
+          } 
+    }//GEN-LAST:event_txtDiasKeyTyped
+
+    private void txtPeliculasKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPeliculasKeyTyped
+       char c=evt.getKeyChar(); 
+     if(!Character.isDigit(c)) { 
+              getToolkit().beep();  
+              evt.consume();
+          } 
+    }//GEN-LAST:event_txtPeliculasKeyTyped
 
     /**
      * @param args the command line arguments
