@@ -76,6 +76,11 @@ public class Principal12 extends javax.swing.JFrame {
         jPanel1.add(cmdCalcular, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 250, -1, -1));
 
         cmdBorrar.setText("Borrar");
+        cmdBorrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmdBorrarActionPerformed(evt);
+            }
+        });
         jPanel1.add(cmdBorrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 250, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -97,8 +102,26 @@ public class Principal12 extends javax.swing.JFrame {
     }//GEN-LAST:event_txtPeliculasActionPerformed
 
     private void cmdCalcularActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdCalcularActionPerformed
-        // TODO add your handling code here:
+    String monto;
+    int dias,peliculas,nptotal,vtotal;
+    
+    dias= Integer.parseInt(txtDias.getText());
+    peliculas= Integer.parseInt(txtPeliculas.getText());
+    
+    nptotal=peliculas-1;
+    vtotal=nptotal*dias*1500;
+    
+    monto= String.valueOf(vtotal);
+    txtMonto.setText(monto);
+        
     }//GEN-LAST:event_cmdCalcularActionPerformed
+
+    private void cmdBorrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmdBorrarActionPerformed
+     txtDias.setText("");
+     txtPeliculas.setText("");
+     txtMonto.setText("");
+     txtDias.requestFocusInWindow();
+    }//GEN-LAST:event_cmdBorrarActionPerformed
 
     /**
      * @param args the command line arguments
